@@ -2,9 +2,14 @@ import React from 'react';
 
 export default ({onLogin}) => (
     <form onSubmit={onLogin}>
-        <input type="text" name="email" />
-        <input type="password" name="password" />
+        <fieldset>
 
-        <button type="submit">Sign In</button>
+          <legend>Login Form</legend>
+
+          <input type="text" name="email" />
+          <input type="password" name="password" />
+
+          <input type="submit" value="Sign In" />
+        </fieldset>
     </form>
 );

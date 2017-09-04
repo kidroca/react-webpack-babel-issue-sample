@@ -3,6 +3,8 @@ import 'whatwg-fetch';
 const BASE_URL = 'https://dev.diasyst.com/api';
 const LOGIN = `${BASE_URL}/auth/client/login`;
 const ACCOUNT = `${BASE_URL}/patient/account/get`;
+const GET_PLAN = `${BASE_URL}/patient/recommendation/get`;
+const DECLINE_PLAN = `${BASE_URL}/patient/recommendation/decline`;
 
 const DEFAULT_CONFIG = {
   method: 'POST',
@@ -38,6 +40,18 @@ class Requester {
     return fetch(ACCOUNT, getConfig())
       .then(rejectErrors)
       .then(response => response.result);
+  }
+
+  getActivePlan() {
+    return fetch(GET_PLAN, getConfig())
+      .then(rejectErrors)
+      .then(response => Object.keys(response.recommendation).length > 0 && response.recommendation);
+  }
+
+  declinePlan() {
+    return fetch(DECLINE_PLAN, getConfig())
+      .then(rejectErrors)
+      .then(() => this.getActivePlan());
   }
 }
 

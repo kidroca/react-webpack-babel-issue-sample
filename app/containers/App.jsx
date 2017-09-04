@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Login from './Login';
 
+import Login from './Login';
+import Plan from './Plan';
 import requester from '../utils/requester';
 
 export default class App extends Component {
@@ -12,7 +13,7 @@ export default class App extends Component {
     this.state = {
       loggedIn: false,
       user: null,
-      recommendation: null,
+      plan: null,
       error: null
     }
   }
@@ -21,7 +22,9 @@ export default class App extends Component {
 
     const {loggedIn, user, plan, error} = this.state;
 
-    const view = loggedIn ? <div>You are logged in</div> : <Login onLogin={this.handleLogin} />;
+    const view = loggedIn
+      ? <Plan plan={plan} onDecline={this.handlePlanDecline} />
+      : <Login onLogin={this.handleLogin} />;
 
     const errorView = error && <section className="error">{error}</section>;
 
@@ -54,6 +57,21 @@ export default class App extends Component {
         loggedIn: true,
         user: result
       }))
-      .catch(error => this.setState({ error: error.message }))
+      .then(() => requester.getActivePlan())
+      .then(plan => this.setState({ plan }))
+      .catch(error => this.onError(error))
+  };
+
+  handlePlanDecline = () => {
+
+    this.setState({ error: null });
+
+    requester.declinePlan()
+             .then(plan => this.setState({ plan }))
+             .catch(error => this.onError(error))
+  };
+
+  onError(error) {
+    this.setState({ error: error.message })
   }
 }
