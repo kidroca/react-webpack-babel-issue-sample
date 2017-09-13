@@ -23,7 +23,11 @@ export default class App extends Component {
     const {loggedIn, user, plan, error} = this.state;
 
     const view = loggedIn
-      ? <Plan plan={plan} onDecline={this.handlePlanDecline} onQuestion={this.handlePlanQuestion} />
+      ? <Plan plan={plan}
+              onDecline={this.handlePlanDecline}
+              onQuestion={this.handlePlanQuestion}
+              onAccept={this.handlePlanAccept} />
+
       : <Login onLogin={this.handleLogin} />;
 
     const errorView = error && <section className="error">{error}</section>;
@@ -76,6 +80,15 @@ export default class App extends Component {
     this.setState({ error: null });
 
     requester.questionPlan()
+             .then(plan => this.setState({ plan }))
+             .catch(error => this.onError(error))
+  };
+
+  handlePlanAccept = () => {
+
+    this.setState({ error: null });
+
+    requester.acceptPlan()
              .then(plan => this.setState({ plan }))
              .catch(error => this.onError(error))
   };

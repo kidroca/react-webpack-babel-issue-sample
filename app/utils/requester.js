@@ -6,6 +6,7 @@ const ACCOUNT = `${BASE_URL}/patient/account/get`;
 const GET_PLAN = `${BASE_URL}/patient/recommendation/get`;
 const DECLINE_PLAN = `${BASE_URL}/patient/recommendation/decline`;
 const QUESTION_PLAN = `${BASE_URL}/patient/recommendation/question`;
+const ACCEPT_PLAN = `${BASE_URL}/patient/recommendation/accept`;
 
 const DEFAULT_CONFIG = {
   method: 'POST',
@@ -63,6 +64,14 @@ class Requester {
     const body = { question: prompt('Question?') };
 
     return fetch(QUESTION_PLAN, {...getConfig(), body: JSON.stringify(body)})
+      .then(rejectErrors)
+      .then(() => this.getActivePlan());
+
+  }
+
+  acceptPlan() {
+
+    return fetch(ACCEPT_PLAN, getConfig())
       .then(rejectErrors)
       .then(() => this.getActivePlan());
 

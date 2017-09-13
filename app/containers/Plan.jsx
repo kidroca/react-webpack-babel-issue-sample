@@ -1,13 +1,18 @@
 import React from 'react';
 
-export default ({ plan = null, onDecline = f => f, onQuestion = f => f }) => {
+export default ({
+                  plan = null,
+                  onDecline = f => f,
+                  onQuestion = f => f,
+                  onAccept = f => f
+}) => {
 
   if (plan) {
     return (
       <section>
         <h2>{plan.type} - {plan.state.name}</h2>
         <section>
-          <button onClick={notImplemented}>Accept</button>
+          <button onClick={onAccept}>Accept</button>
           <button onClick={onQuestion}>Question</button>
           <button onClick={onDecline}>Decline</button>
           <button onClick={notImplemented}>Pickup</button>
