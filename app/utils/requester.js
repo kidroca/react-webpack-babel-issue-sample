@@ -5,6 +5,7 @@ const LOGIN = `${BASE_URL}/auth/client/login`;
 const ACCOUNT = `${BASE_URL}/patient/account/get`;
 const GET_PLAN = `${BASE_URL}/patient/recommendation/get`;
 const DECLINE_PLAN = `${BASE_URL}/patient/recommendation/decline`;
+const QUESTION_PLAN = `${BASE_URL}/patient/recommendation/question`;
 
 const DEFAULT_CONFIG = {
   method: 'POST',
@@ -49,9 +50,22 @@ class Requester {
   }
 
   declinePlan() {
-    return fetch(DECLINE_PLAN, getConfig())
+
+    const body = { reason: prompt('Decline Reason?') };
+
+    return fetch(DECLINE_PLAN, {...getConfig(), body: JSON.stringify(body)})
       .then(rejectErrors)
       .then(() => this.getActivePlan());
+  }
+
+  questionPlan() {
+
+    const body = { question: prompt('Question?') };
+
+    return fetch(QUESTION_PLAN, {...getConfig(), body: JSON.stringify(body)})
+      .then(rejectErrors)
+      .then(() => this.getActivePlan());
+
   }
 }
 
