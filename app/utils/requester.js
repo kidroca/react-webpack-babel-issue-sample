@@ -7,6 +7,7 @@ const GET_PLAN = `${BASE_URL}/patient/recommendation/get`;
 const DECLINE_PLAN = `${BASE_URL}/patient/recommendation/decline`;
 const QUESTION_PLAN = `${BASE_URL}/patient/recommendation/question`;
 const ACCEPT_PLAN = `${BASE_URL}/patient/recommendation/accept`;
+const PICKUP_PLAN = `${BASE_URL}/patient/recommendation/pickup`;
 
 const DEFAULT_CONFIG = {
   method: 'POST',
@@ -75,6 +76,13 @@ class Requester {
       .then(rejectErrors)
       .then(() => this.getActivePlan());
 
+  }
+
+  pickUpPlan() {
+
+    return fetch(PICKUP_PLAN, getConfig())
+          .then(rejectErrors)
+          .then(() => this.getActivePlan());
   }
 }
 

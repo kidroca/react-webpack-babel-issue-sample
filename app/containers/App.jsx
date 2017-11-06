@@ -26,7 +26,8 @@ export default class App extends Component {
       ? <Plan plan={plan}
               onDecline={this.handlePlanDecline}
               onQuestion={this.handlePlanQuestion}
-              onAccept={this.handlePlanAccept} />
+              onAccept={this.handlePlanAccept}
+              onPickUp={this.handlePlanPickup} />
 
       : <Login onLogin={this.handleLogin} />;
 
@@ -91,6 +92,15 @@ export default class App extends Component {
     requester.acceptPlan()
              .then(plan => this.setState({ plan }))
              .catch(error => this.onError(error))
+  };
+
+  handlePlanPickup = () => {
+
+    this.setState({ error: null });
+
+    requester.pickUpPlan()
+                 .then(plan => this.setState({ plan }))
+                 .catch(error => this.onError(error))
   };
 
   onError(error) {

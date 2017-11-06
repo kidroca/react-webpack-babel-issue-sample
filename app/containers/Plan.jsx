@@ -4,7 +4,8 @@ export default ({
                   plan = null,
                   onDecline = f => f,
                   onQuestion = f => f,
-                  onAccept = f => f
+                  onAccept = f => f,
+                  onPickUp = f => f
 }) => {
 
   if (plan) {
@@ -15,7 +16,7 @@ export default ({
           <button onClick={onAccept}>Accept</button>
           <button onClick={onQuestion}>Question</button>
           <button onClick={onDecline}>Decline</button>
-          <button onClick={notImplemented}>Pickup</button>
+          <button onClick={onPickUp}>Pickup</button>
         </section>
         <pre>{JSON.stringify(plan, null, '\t')}</pre>
       </section>
@@ -23,8 +24,4 @@ export default ({
   }
 
   return <h3>No active recommendation</h3>;
-}
-
-function notImplemented() {
-  alert('Not implemented');
 }
