@@ -1,0 +1,28 @@
+html, body, main, #app {
+  height: 100%;
+}
+
+body {
+  background-color: cornsilk;
+  font-family: sans-serif;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-view {
+  overflow-y: auto;
+}
+
+form > fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 200px;
+}
