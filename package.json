@@ -22,10 +22,15 @@
   "homepage": "https://inceptdev.com/kidroca/diasyst-paw/blob/master/README.md",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "history": "latest",
     "node-sass": "^4.7.2",
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-logger": "latest",
+    "redux-thunk": "^2.2.0",
     "sass-loader": "^6.0.6"
   },
   "devDependencies": {

@@ -4,9 +4,9 @@ import {
   Route
 } from 'react-router-dom';
 import App from './app';
-import About from './components/About';
-import Sample from './components/Sample';
-import 'styles/index.scss';
+import About from './containers/About';
+import Sample from './containers/Sample';
+import '../styles/index.scss';
 
 const Routes = () => (
   <Router>

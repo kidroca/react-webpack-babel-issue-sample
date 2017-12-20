@@ -1,11 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {AppContainer} from 'react-hot-loader'
+import { AppContainer } from 'react-hot-loader'
+import { Provider } from 'react-redux';
+import { appStore } from './redux';
 import Routes from './routes'
 
 ReactDOM.render(
   <AppContainer>
-    <Routes />
+    <Provider store={appStore}>
+      <Routes />
+    </Provider>
   </AppContainer>,
   document.getElementById('app')
 );
@@ -18,11 +22,13 @@ if (module.hot) {
     const NextApp = require('./app').default;
     ReactDOM.render(
       <AppContainer>
-        <NextApp/>
+        <Provider appStore={appStore}>
+          <NextApp />
+        </Provider>
       </AppContainer>,
       document.getElementById('app')
     );
-  
+
   });
 
 }
