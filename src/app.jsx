@@ -1,7 +1,6 @@
 import React from 'react';
 import Navigation from './containers/Navigation';
 import 'normalize.css';
-import '../styles/index.scss';
 
 const App = () => (
   <div className='App'>
